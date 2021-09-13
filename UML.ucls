@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="Main.ReadWrite" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/ReadWrite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="61" width="87" x="188" y="232"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="Main.Caixote" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Caixote.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="106" x="411" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="Main.Empilhadora" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Empilhadora.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="213" x="158" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="Main.Alvo" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Alvo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="785" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="Main.Bateria" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Bateria.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="1027" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="Main.Gelo" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Gelo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="1269" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Main.MovableObject" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/MovableObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="268" x="477" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="Main.Main" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="61" width="113" x="344" y="194"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="Main.SmallStone" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/SmallStone.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="123" x="557" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="Main.BigStone" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/BigStone.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="113" x="720" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="Main.Teleporte" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Teleporte.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="1511" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="Main.Buraco" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Buraco.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="1753" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="Main.Chao" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Chao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="95" x="198" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="Main.Score" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Score.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="126" x="1584" y="194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="Main.Parede" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Parede.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="104" x="333" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="Main.AbstractSObject" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/AbstractSObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="236" x="1027" y="703"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="Main.ActiveObject" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/ActiveObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="202" x="1511" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="Main.Martelo" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Martelo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="1995" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="Main.ParedeRachada" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/ParedeRachada.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="202" x="2237" y="1040"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="Main.SokobanGame" project="Sokoban_93205_Gonçalo_Henriques" 
+    file="/Sokoban_93205_Gonçalo_Henriques/src/Main/SokobanGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="309" x="497" y="194"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="21">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="22">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="25">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <association id="28">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="29" name="objs"/>      
+      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <association id="33">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="34" name="INSTANCE"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="40">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="42">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="43">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="44">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <association id="47">    
+    <bendpoint x="167" y="703"/>    
+    <bendpoint x="167" y="1040"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="48" name="player"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
