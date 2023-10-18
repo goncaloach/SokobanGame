@@ -1,6 +1,6 @@
 package io.goncaloach.sokobanobjects.impl;
 
-import Main.SokobanGame;
+import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.ActiveObject;
 import io.goncaloach.sokobanobjects.MovableObject;

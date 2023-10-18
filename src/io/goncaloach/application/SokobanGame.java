@@ -1,10 +1,11 @@
-package Main;
+package io.goncaloach.application;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import io.goncaloach.sokobanobjects.AbstractSObject;
@@ -19,20 +20,20 @@ import pt.iul.ista.poo.utils.Point2D;
 
 public class SokobanGame implements Observer {
 
+    public static final int MAP_WIDTH = 10;
+    public static final int MAP_HEIGHT = 10;
     private Empilhadora player;
-    private List<AbstractSObject> objs = new ArrayList<>();
-    private int level = 0;
-    private int numAlvos;
+    private final List<AbstractSObject> sokobanObjects = new ArrayList<>();
+    private int level = 1;
+    private int numberOfTargets;
 
     private static SokobanGame INSTANCE = null;
 
-
     private SokobanGame() {
-        readLevel(level + "");
+        readMap(level);
         objsToGUI();
         setStatusMessage();
     }
-
 
     public static SokobanGame getInstance() {
         if (INSTANCE == null)
@@ -40,47 +41,53 @@ public class SokobanGame implements Observer {
         return INSTANCE;
     }
 
-
-    public List<AbstractSObject> readLevel(String numlevel) {
-        try {
-            Scanner scan = new Scanner(new File("maps//levels//level" + numlevel + ".txt"));
-            int y = 0;
-            AbstractSObject obj = null;
-            while (scan.hasNextLine()) {
-                String s = scan.nextLine();
-                for (int x = 0; x != 10; x++) {
-                    ImageMatrixGUI.getInstance().addImage(new Chao(new Point2D(x, y)));
-                    obj = AbstractSObject.createObj(s.charAt(x), new Point2D(x, y));
-                    if (obj != null) {
-                        if (obj instanceof Alvo)
-                            numAlvos++;
-                        if (obj instanceof Empilhadora)
-                            player = (Empilhadora) obj;
-                        objs.add(obj);
-                    }
-                }
-                y++;
-            }
-            scan.close();
-        } catch (FileNotFoundException e) {
-            System.err.println("ficheiro nao encontrado");
-        }
-        return objs;
+    private void readMap(int level) {
+        readMap("levels//lvl_" + level);
     }
 
+    private void readMap(String mapName) {
+        try (Scanner scanner = new Scanner(new File("maps//" + mapName + ".txt"))) {
+            int lineReadIndex = 0;
+            while (scanner.hasNextLine() && lineReadIndex < MAP_HEIGHT) {
+                processLine(lineReadIndex, scanner.nextLine());
+                lineReadIndex++;
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void processLine(int y, String lineRead) {
+        for (int x = 0; x != MAP_WIDTH; x++) {
+            ImageMatrixGUI.getInstance().addImage(new Chao(new Point2D(x, y)));
+            Optional<AbstractSObject> optionalSokobanObject =
+                    AbstractSObject.createSokobanObject(lineRead.charAt(x), new Point2D(x, y));
+            optionalSokobanObject.ifPresent(this::initializeVariablesFromObjects);
+        }
+    }
+
+    private void initializeVariablesFromObjects(AbstractSObject sokobanObject) {
+        if (sokobanObject instanceof Target) {
+            numberOfTargets++;
+        }
+        if (sokobanObject instanceof Empilhadora) {
+            player = (Empilhadora) sokobanObject;
+        }
+        sokobanObjects.add(sokobanObject);
+    }
 
     public List<AbstractSObject> getObjectsAt(Point2D position) {
-        List<AbstractSObject> list = new ArrayList<AbstractSObject>();
-        for (AbstractSObject i : objs)
+        List<AbstractSObject> list = new ArrayList<>();
+        for (AbstractSObject i : sokobanObjects)
             if (i.getPosition().equals(position))
                 list.add(i);
         return list;
     }
 
 
-    public boolean isTransp(List<AbstractSObject> list, AbstractSObject obj) {
+    public boolean isTraversable(List<AbstractSObject> list, AbstractSObject obj) {
         for (AbstractSObject i : list)
-            if (!i.isTransponivel()) {
+            if (!i.isTraversable()) {
                 if (i instanceof ActiveObject) {
                     return obj instanceof Empilhadora && ((Empilhadora) obj).hasMartelo();
                 }
@@ -115,8 +122,8 @@ public class SokobanGame implements Observer {
 
     public void gameOver() {
         ImageMatrixGUI.getInstance().clearImages();
-        objs.clear();
-        readLevel("GameOver");
+        sokobanObjects.clear();
+        readMap("gameover");
         objsToGUI();
         player.setEnergia(1);
         ImageMatrixGUI.getInstance().setStatusMessage("GAME OVER - Press 'R' to restart "
@@ -125,9 +132,9 @@ public class SokobanGame implements Observer {
 
     public void restartLevel() {
         ImageMatrixGUI.getInstance().clearImages();
-        objs.clear();
-        numAlvos = 0;
-        readLevel(level + "");
+        sokobanObjects.clear();
+        numberOfTargets = 0;
+        readMap(level);
         player.setEnergia(101);
         player.setMoves(-1);
         objsToGUI();
@@ -135,7 +142,7 @@ public class SokobanGame implements Observer {
     }
 
     public void objsToGUI() {
-        for (AbstractSObject o : objs)
+        for (AbstractSObject o : sokobanObjects)
             ImageMatrixGUI.getInstance().addImage(o);
     }
 
@@ -146,15 +153,15 @@ public class SokobanGame implements Observer {
     }
 
     public void removeObj(AbstractSObject obj) {
-        objs.remove(obj);
+        sokobanObjects.remove(obj);
     }
 
     public void addObj(AbstractSObject obj) {
-        objs.add(obj);
+        sokobanObjects.add(obj);
     }
 
     public void removeObj_GUI(AbstractSObject obj) {
-        objs.remove(obj);
+        sokobanObjects.remove(obj);
         ImageMatrixGUI.getInstance().removeImage(obj);
     }
 
@@ -166,12 +173,12 @@ public class SokobanGame implements Observer {
         return level;
     }
 
-    public int getNumAlvos() {
-        return numAlvos;
+    public int getNumberOfTargets() {
+        return numberOfTargets;
     }
 
-    public List<AbstractSObject> getAllObjs() {
-        return new ArrayList<>(objs);
+    public List<AbstractSObject> getAllObjects() {
+        return new ArrayList<>(sokobanObjects);
     }
 
     public void incrementLevel() {

@@ -2,7 +2,7 @@ package io.goncaloach.sokobanobjects.impl;
 
 import java.util.List;
 
-import Main.SokobanGame;
+import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.ActiveObject;
 import io.goncaloach.sokobanobjects.MovableObject;
@@ -20,7 +20,7 @@ public class Gelo extends AbstractSObject implements ActiveObject {
     public void action(Direction d, MovableObject obj) {
         SokobanGame soko = SokobanGame.getInstance();
         List<AbstractSObject> list2 = soko.getObjectsAt(getPosition().plus(d.asVector()));
-        if (soko.isTransp(list2, obj)) {
+        if (soko.isTraversable(list2, obj)) {
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {

@@ -2,7 +2,7 @@ package io.goncaloach.sokobanobjects.impl;
 
 import java.util.List;
 
-import Main.SokobanGame;
+import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.MovableObject;
 import pt.iul.ista.poo.utils.Direction;

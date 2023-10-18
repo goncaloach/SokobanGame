@@ -1,5 +1,5 @@
-Player:Gugas Kneefs - Score:87
-Player:stugots - Score:87
-Player:Guiguinhas - Score:91
-Player:blin - Score:92
-Player:ez - Score:96
+Player:blin - Score:32
+Player:kneefs - Score:33
+Player:ncie - Score:39
+Player:hey - Score:80
+Player:Stugots - Score:90

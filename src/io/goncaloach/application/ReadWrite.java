@@ -1,19 +1,20 @@
-package Main;
+package io.goncaloach.application;
 
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
 public class ReadWrite {
 
     public static List<Score> readScore() {
-        List<Score> list = new ArrayList<Score>();
-        SokobanGame soko = SokobanGame.getInstance();
-        int moves = soko.getPlayer().getMoves();
+        List<Score> list = new ArrayList<>();
+        SokobanGame sokoban = SokobanGame.getInstance();
+        int moves = sokoban.getPlayer().getMoves();
         try {
-            Scanner scan = new Scanner(new File("scores//score" + soko.getLevel() + ".txt"));
+            Scanner scan = new Scanner(new File("scores//score" + sokoban.getLevel() + ".txt"));
             String[] info;
             while (scan.hasNextLine()) {
                 info = scan.nextLine().split("-");
@@ -32,19 +33,18 @@ public class ReadWrite {
             } else {
                 list.add(new Score(insertName(), moves));
             }
-            list.sort((a, b) -> a.getScore() - b.getScore());
+            list.sort(Comparator.comparingInt(Score::getScore));
         } catch (Exception e) {
             System.err.println("erro ao ler");
         }
         return list;
     }
 
-
     public static void writeScore() {
         SokobanGame soko = SokobanGame.getInstance();
         List<Score> list = readScore();
         try {
-            PrintWriter pw = new PrintWriter(new File("scores//score" + soko.getLevel() + ".txt"));
+            PrintWriter pw = new PrintWriter("scores//score" + soko.getLevel() + ".txt");
             for (Score s : list) {
                 pw.println(s);
             }
@@ -54,13 +54,10 @@ public class ReadWrite {
         }
     }
 
-
     public static String insertName() {
-        String nome = "";
-        Scanner keyscan = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Nickname:");
-        nome = keyscan.nextLine();
-        return nome;
+        return scanner.nextLine();
     }
 
 

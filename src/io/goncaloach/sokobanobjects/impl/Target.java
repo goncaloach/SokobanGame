@@ -2,8 +2,8 @@ package io.goncaloach.sokobanobjects.impl;
 
 import java.util.List;
 
-import Main.ReadWrite;
-import Main.SokobanGame;
+import io.goncaloach.application.ReadWrite;
+import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.ActiveObject;
 import io.goncaloach.sokobanobjects.MovableObject;
@@ -11,10 +11,10 @@ import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
-public class Alvo extends AbstractSObject implements ActiveObject {
+public class Target extends AbstractSObject implements ActiveObject {
 
-    public Alvo(Point2D point2d) {
-        super(point2d, "Alvo", 1, true);
+    public Target(Point2D point2d) {
+        super(point2d, "Target", 1, true);
     }
 
     @Override
@@ -22,8 +22,8 @@ public class Alvo extends AbstractSObject implements ActiveObject {
         SokobanGame soko = SokobanGame.getInstance();
         int positionSet = 0;
         if (obj instanceof Caixote) {
-            for (AbstractSObject i : soko.getAllObjs()) {
-                if (i instanceof Alvo) {
+            for (AbstractSObject i : soko.getAllObjects()) {
+                if (i instanceof Target) {
                     List<AbstractSObject> list = soko.getObjectsAt(i.getPosition());
                     for (AbstractSObject j : list) {
                         if (j instanceof Caixote)
@@ -32,7 +32,7 @@ public class Alvo extends AbstractSObject implements ActiveObject {
                 }
             }
         }
-        if (positionSet == soko.getNumAlvos()) {
+        if (positionSet == soko.getNumberOfTargets()) {
             if (soko.getLevel() >= 2) {
                 ReadWrite.writeScore();
                 System.out.println("The end :)");

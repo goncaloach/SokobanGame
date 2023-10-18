@@ -2,7 +2,7 @@ package io.goncaloach.sokobanobjects.impl;
 
 import java.util.List;
 
-import Main.SokobanGame;
+import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.ActiveObject;
 import io.goncaloach.sokobanobjects.MovableObject;
@@ -19,7 +19,7 @@ public class Teleporte extends AbstractSObject implements ActiveObject {
     public void action(Direction d, MovableObject obj) {
         SokobanGame soko = SokobanGame.getInstance();
         Point2D point = null;
-        for (AbstractSObject i : soko.getAllObjs()) {
+        for (AbstractSObject i : soko.getAllObjects()) {
             if (i instanceof Teleporte)
                 if (!i.getPosition().equals(this.getPosition()))
                     point = i.getPosition();
