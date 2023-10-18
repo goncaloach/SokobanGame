@@ -1,7 +1,8 @@
-package Main;
+package io.goncaloach.sokobanobjects;
 
 import java.util.List;
 
+import Main.SokobanGame;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
