@@ -51,18 +51,18 @@ public abstract class AbstractSObject implements ImageTile {
     public static Optional<AbstractSObject> createSokobanObject(char objectCode, Point2D position) {
 
         return switch (objectCode) {
-            case '#' -> Optional.of(new Parede(position));
-            case 'C' -> Optional.of(new Caixote(position));
-            case 'E' -> Optional.of(new Empilhadora(position));
+            case '#' -> Optional.of(new Wall(position));
+            case 'C' -> Optional.of(new Box(position));
+            case 'E' -> Optional.of(new Forklift(position));
             case 'X' -> Optional.of(new Target(position));
-            case 'b' -> Optional.of(new Bateria(position));
+            case 'b' -> Optional.of(new Battery(position));
             case 'O' -> Optional.of(new Hole(position));
             case 'p' -> Optional.of(new SmallStone(position));
             case 'P' -> Optional.of(new BigStone(position));
-            case 'g' -> Optional.of(new Gelo(position));
-            case '%' -> Optional.of(new ParedeRachada(position));
-            case 'm' -> Optional.of(new Martelo(position));
-            case 't' -> Optional.of(new Teleporte(position));
+            case 'g' -> Optional.of(new Ice(position));
+            case '%' -> Optional.of(new BrokenWall(position));
+            case 'm' -> Optional.of(new Hammer(position));
+            case 't' -> Optional.of(new Teleport(position));
             default -> Optional.empty();
         };
 

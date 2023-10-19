@@ -22,7 +22,7 @@ public class SokobanGame implements Observer {
 
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
-    private Empilhadora player;
+    private Forklift player;
     private final List<AbstractSObject> sokobanObjects = new ArrayList<>();
     private int level = 1;
     private int numberOfTargets;
@@ -59,7 +59,7 @@ public class SokobanGame implements Observer {
 
     private void processLine(int y, String lineRead) {
         for (int x = 0; x != MAP_WIDTH; x++) {
-            ImageMatrixGUI.getInstance().addImage(new Chao(new Point2D(x, y)));
+            ImageMatrixGUI.getInstance().addImage(new Ground(new Point2D(x, y)));
             Optional<AbstractSObject> optionalSokobanObject =
                     AbstractSObject.createSokobanObject(lineRead.charAt(x), new Point2D(x, y));
             optionalSokobanObject.ifPresent(this::initializeVariablesFromObjects);
@@ -70,8 +70,8 @@ public class SokobanGame implements Observer {
         if (sokobanObject instanceof Target) {
             numberOfTargets++;
         }
-        if (sokobanObject instanceof Empilhadora) {
-            player = (Empilhadora) sokobanObject;
+        if (sokobanObject instanceof Forklift) {
+            player = (Forklift) sokobanObject;
         }
         sokobanObjects.add(sokobanObject);
     }
@@ -89,7 +89,7 @@ public class SokobanGame implements Observer {
         for (AbstractSObject i : list)
             if (!i.isTraversable()) {
                 if (i instanceof ActiveObject) {
-                    return obj instanceof Empilhadora && ((Empilhadora) obj).hasMartelo();
+                    return obj instanceof Forklift && ((Forklift) obj).hasHammer();
                 }
                 return false;
             }
@@ -110,11 +110,11 @@ public class SokobanGame implements Observer {
         if (Direction.isDirection(lastKeyPressed))
             player.move(Direction.directionFor(lastKeyPressed));
 
-        if (player.getEnergia() == 0) {
+        if (player.getEnergy() == 0) {
             gameOver();
             return;
         }
-        player.decEnergia();
+        player.decEnergy();
         player.incMoves();
         ImageMatrixGUI.getInstance().update();
         setStatusMessage();
@@ -125,7 +125,7 @@ public class SokobanGame implements Observer {
         sokobanObjects.clear();
         readMap("gameover");
         objsToGUI();
-        player.setEnergia(1);
+        player.setEnergy(1);
         ImageMatrixGUI.getInstance().setStatusMessage("GAME OVER - Press 'R' to restart "
                 + "- Press 'ESC' to quit");
     }
@@ -135,7 +135,7 @@ public class SokobanGame implements Observer {
         sokobanObjects.clear();
         numberOfTargets = 0;
         readMap(level);
-        player.setEnergia(101);
+        player.setEnergy(101);
         player.setMoves(-1);
         objsToGUI();
         setStatusMessage();
@@ -147,7 +147,7 @@ public class SokobanGame implements Observer {
     }
 
     public void setStatusMessage() {
-        ImageMatrixGUI.getInstance().setStatusMessage("Energy:" + player.getEnergia() +
+        ImageMatrixGUI.getInstance().setStatusMessage("Energy:" + player.getEnergy() +
                 "   Moves:" + player.getMoves() + "   Level:" + level +
                 "           Press 'R' to restart");
     }
@@ -165,7 +165,7 @@ public class SokobanGame implements Observer {
         ImageMatrixGUI.getInstance().removeImage(obj);
     }
 
-    public Empilhadora getPlayer() {
+    public Forklift getPlayer() {
         return player;
     }
 

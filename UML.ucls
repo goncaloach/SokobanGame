@@ -10,7 +10,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="io.goncaloach.sokobanobjects.impl.Caixote" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="2" language="java" name="io.goncaloach.sokobanobjects.impl.Box" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Caixote.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="106" x="411" y="1251"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="io.goncaloach.sokobanobjects.impl.Empilhadora" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="3" language="java" name="io.goncaloach.sokobanobjects.impl.Forklift" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Empilhadora.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="315" width="213" x="158" y="1251"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +37,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="io.goncaloach.sokobanobjects.impl.Bateria" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="5" language="java" name="io.goncaloach.sokobanobjects.impl.Battery" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Bateria.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="202" x="1027" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +46,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="io.goncaloach.sokobanobjects.impl.Gelo" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="6" language="java" name="io.goncaloach.sokobanobjects.impl.Ice" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Gelo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="202" x="1269" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +91,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="io.goncaloach.sokobanobjects.impl.Teleporte" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="11" language="java" name="io.goncaloach.sokobanobjects.impl.Teleport" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Teleporte.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="202" x="1511" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,7 +109,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="io.goncaloach.sokobanobjects.impl.Chao" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="13" language="java" name="io.goncaloach.sokobanobjects.impl.Ground" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Chao.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="95" x="198" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -127,7 +127,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="io.goncaloach.sokobanobjects.impl.Parede" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="15" language="java" name="io.goncaloach.sokobanobjects.impl.Wall" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Parede.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="104" x="333" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,7 +154,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </interface>  
-  <class id="18" language="java" name="io.goncaloach.sokobanobjects.impl.Martelo" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="18" language="java" name="io.goncaloach.sokobanobjects.impl.Hammer" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/Martelo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="202" x="1995" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -163,7 +163,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="io.goncaloach.sokobanobjects.impl.ParedeRachada" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="19" language="java" name="io.goncaloach.sokobanobjects.impl.BrokenWall" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/ParedeRachada.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="202" x="2237" y="1040"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

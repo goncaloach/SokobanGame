@@ -20,7 +20,7 @@ public class Hole extends AbstractSObject implements ActiveObject {
             soko.gameOver();
         if (obj.isStuckable()) {
             soko.removeObj(obj);
-            soko.addObj(new Parede(getPosition()));
+            soko.addObj(new Wall(getPosition()));
             soko.removeObj(this);
             return;
         }

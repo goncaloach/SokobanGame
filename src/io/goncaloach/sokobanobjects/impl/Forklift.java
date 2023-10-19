@@ -8,23 +8,23 @@ import io.goncaloach.sokobanobjects.MovableObject;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
-public class Empilhadora extends MovableObject {
+public class Forklift extends MovableObject {
 
-    private boolean martelo = false;
-    private int energia = 100;
+    private boolean hasHammer = false;
+    private int energy = 100;
     private int moves = 0;
 
-    public Empilhadora(Point2D position) {
-        super(position, "Empilhadora_D", 2, false, false);
+    public Forklift(Point2D position) {
+        super(position, "Forklift_U", 2, false, false);
     }
 
     @Override
-    public void move(Direction d) {
-        Point2D pos = getPosition().plus(d.asVector());
-        setName("Empilhadora_" + d.toString().charAt(0));
-        moveObjInFront(pos, d);
-        moveThis(pos, d);
-        activateObj(d);
+    public void move(Direction direction) {
+        Point2D nextPosition = getPosition().plus(direction.asVector());
+        setName("Forklift_" + direction.toString().charAt(0));
+        moveObjInFront(nextPosition, direction);
+        moveThis(nextPosition, direction);
+        activateObj(direction);
     }
 
     public void moveObjInFront(Point2D pos, Direction d) {
@@ -36,24 +36,24 @@ public class Empilhadora extends MovableObject {
         }
     }
 
-    public boolean hasMartelo() {
-        return martelo;
+    public boolean hasHammer() {
+        return hasHammer;
     }
 
-    public void setMartelo(boolean b) {
-        martelo = b;
+    public void setHasHammer(boolean b) {
+        hasHammer = b;
     }
 
-    public int getEnergia() {
-        return energia;
+    public int getEnergy() {
+        return energy;
     }
 
-    public void setEnergia(int energia) {
-        this.energia = energia;
+    public void setEnergy(int energy) {
+        this.energy = energy;
     }
 
-    public void decEnergia() {
-        energia--;
+    public void decEnergy() {
+        energy--;
     }
 
     public void incMoves() {

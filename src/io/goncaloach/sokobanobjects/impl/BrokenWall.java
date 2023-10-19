@@ -7,10 +7,10 @@ import io.goncaloach.sokobanobjects.MovableObject;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
-public class ParedeRachada extends AbstractSObject implements ActiveObject {
+public class BrokenWall extends AbstractSObject implements ActiveObject {
 
-    public ParedeRachada(Point2D point2d) {
-        super(point2d, "Parede_Partida", 1, false);
+    public BrokenWall(Point2D point2d) {
+        super(point2d, "Broken_Wall", 1, false);
     }
 
     @Override

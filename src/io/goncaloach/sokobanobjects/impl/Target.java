@@ -21,12 +21,12 @@ public class Target extends AbstractSObject implements ActiveObject {
     public void action(Direction d, MovableObject obj) {
         SokobanGame soko = SokobanGame.getInstance();
         int positionSet = 0;
-        if (obj instanceof Caixote) {
+        if (obj instanceof Box) {
             for (AbstractSObject i : soko.getAllObjects()) {
                 if (i instanceof Target) {
                     List<AbstractSObject> list = soko.getObjectsAt(i.getPosition());
                     for (AbstractSObject j : list) {
-                        if (j instanceof Caixote)
+                        if (j instanceof Box)
                             positionSet++;
                     }
                 }

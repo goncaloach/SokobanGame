@@ -9,10 +9,10 @@ import io.goncaloach.sokobanobjects.MovableObject;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
-public class Teleporte extends AbstractSObject implements ActiveObject {
+public class Teleport extends AbstractSObject implements ActiveObject {
 
-    public Teleporte(Point2D point2d) {
-        super(point2d, "Portal_Verde", 1, true);
+    public Teleport(Point2D point2d) {
+        super(point2d, "Green_Portal", 1, true);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Teleporte extends AbstractSObject implements ActiveObject {
         SokobanGame soko = SokobanGame.getInstance();
         Point2D point = null;
         for (AbstractSObject i : soko.getAllObjects()) {
-            if (i instanceof Teleporte)
+            if (i instanceof Teleport)
                 if (!i.getPosition().equals(this.getPosition()))
                     point = i.getPosition();
         }
