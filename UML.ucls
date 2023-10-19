@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="io.goncaloach.application.ReadWrite" project="Sokoban_93205_Gonçalo_Henriques"
+  <class id="1" language="java" name="io.goncaloach.application.ScorePrinterWriter" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/ReadWrite.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="61" width="87" x="188" y="232"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 

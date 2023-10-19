@@ -1,5 +1,0 @@
-Player:blin - Score:32
-Player:kneefs - Score:33
-Player:ncie - Score:39
-Player:hey - Score:80
-Player:Stugots - Score:90

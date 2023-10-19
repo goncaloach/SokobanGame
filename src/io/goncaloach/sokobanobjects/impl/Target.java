@@ -2,7 +2,7 @@ package io.goncaloach.sokobanobjects.impl;
 
 import java.util.List;
 
-import io.goncaloach.application.ReadWrite;
+import io.goncaloach.application.ScorePrinterWriter;
 import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.ActiveObject;
@@ -18,13 +18,13 @@ public class Target extends AbstractSObject implements ActiveObject {
     }
 
     @Override
-    public void action(Direction d, MovableObject obj) {
-        SokobanGame soko = SokobanGame.getInstance();
+    public void action(Direction direction, MovableObject movableObject) {
+        SokobanGame sokoban = SokobanGame.getInstance();
         int positionSet = 0;
-        if (obj instanceof Box) {
-            for (AbstractSObject i : soko.getAllObjects()) {
+        if (movableObject instanceof Box) {
+            for (AbstractSObject i : sokoban.getAllObjects()) {
                 if (i instanceof Target) {
-                    List<AbstractSObject> list = soko.getObjectsAt(i.getPosition());
+                    List<AbstractSObject> list = sokoban.getObjectsAt(i.getPosition());
                     for (AbstractSObject j : list) {
                         if (j instanceof Box)
                             positionSet++;
@@ -32,18 +32,17 @@ public class Target extends AbstractSObject implements ActiveObject {
                 }
             }
         }
-        if (positionSet == soko.getNumberOfTargets()) {
-            if (soko.getLevel() >= 2) {
-                ReadWrite.writeScore();
-                System.out.println("The end :)");
+        if (positionSet == sokoban.getNumberOfTargets()) {
+            if (sokoban.getLevel() >= 2) {
+                ScorePrinterWriter.writeScore();
+                System.out.println("INFO: The end, thank you for playing!");
                 ImageMatrixGUI.getInstance().dispose();
                 return;
             }
-            ReadWrite.writeScore();
-            System.out.println("next level");
-            soko.incrementLevel();
-            soko.restartLevel();
-
+            ScorePrinterWriter.writeScore();
+            System.out.println("INFO: Next Level");
+            sokoban.incrementLevel();
+            sokoban.restartLevel();
         }
     }
 
