@@ -22,10 +22,11 @@ public class SokobanGame implements Observer {
 
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
+    public static final int MAX_LEVEL = 3;
     private Forklift player;
     private final List<AbstractSObject> sokobanObjects = new ArrayList<>();
+    private final List<Target> targets = new ArrayList<>();
     private int level = 1;
-    private int numberOfTargets;
 
     private static SokobanGame INSTANCE = null;
 
@@ -68,7 +69,7 @@ public class SokobanGame implements Observer {
 
     private void initializeVariablesFromObjects(AbstractSObject sokobanObject) {
         if (sokobanObject instanceof Target) {
-            numberOfTargets++;
+            targets.add((Target) sokobanObject);
         }
         if (sokobanObject instanceof Forklift) {
             player = (Forklift) sokobanObject;
@@ -133,7 +134,7 @@ public class SokobanGame implements Observer {
     public void restartLevel() {
         ImageMatrixGUI.getInstance().clearImages();
         sokobanObjects.clear();
-        numberOfTargets = 0;
+        targets.clear();
         readMap(level);
         player.setEnergy(101);
         player.setMoves(-1);
@@ -173,16 +174,38 @@ public class SokobanGame implements Observer {
         return level;
     }
 
-    public int getNumberOfTargets() {
-        return numberOfTargets;
+    public void checkIfLevelIsCompleted() {
+
+        boolean isLevelCompleted = targets.stream().allMatch(this::containsBox);
+        if (!isLevelCompleted) {
+            return;
+        }
+        ScorePrinterWriter.writeScore();
+        if (level == MAX_LEVEL) {
+            endGame();
+        }
+        startNextLevel();
+    }
+
+    private void startNextLevel() {
+        System.out.println("INFO: Next Level");
+        level++;
+        restartLevel(); //TODO check this
+    }
+
+    private void endGame() {
+        System.out.println("INFO: The end, thank you for playing!");
+        System.exit(0);
+    }
+
+    private boolean containsBox(Target target) {
+        return sokobanObjects.stream() //TODO get objectsAt?
+                .filter(object -> object.getPosition().equals(target.getPosition()))
+                .anyMatch(object -> object instanceof Box);
     }
 
     public List<AbstractSObject> getAllObjects() {
         return new ArrayList<>(sokobanObjects);
-    }
-
-    public void incrementLevel() {
-        level++;
     }
 
 }

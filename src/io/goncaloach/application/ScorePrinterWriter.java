@@ -12,9 +12,12 @@ public class ScorePrinterWriter {
 
     private static final int SCORES_SIZE = 5;
 
+    // The Scanner must not be inside the PrintWriter.
+    // ie the method readScores() must not be inside the PrintWriter try-with-resources.
     public static void writeScore() {
+        List<Score> scores = readScores();
         try (PrintWriter writer = new PrintWriter(getScorePathFile(SokobanGame.getInstance().getLevel()))) {
-            readScores().forEach(writer::println);
+            scores.forEach(writer::println);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
