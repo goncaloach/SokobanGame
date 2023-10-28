@@ -21,7 +21,7 @@ public class Ice extends AbstractSObject implements ActiveObject {
         SokobanGame sokoban = SokobanGame.getInstance();
         List<AbstractSObject> objectsAtNextPosition =
                 sokoban.getObjectsAt(getPosition().plus(direction.asVector()));
-        if (sokoban.isTraversable(objectsAtNextPosition, obj)) {
+        if (sokoban.isPositionTraversable(objectsAtNextPosition, obj)) {
             ImageMatrixGUI.getInstance().update();
             try {
                 Thread.sleep(100);

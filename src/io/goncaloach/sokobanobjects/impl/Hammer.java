@@ -19,7 +19,7 @@ public class Hammer extends AbstractSObject implements ActiveObject {
         SokobanGame soko = SokobanGame.getInstance();
         if (obj instanceof Forklift)
             soko.getPlayer().setHasHammer(true);
-        soko.removeObj_GUI(this);
+        soko.removeObjectFromGUI(this);
     }
 
 }

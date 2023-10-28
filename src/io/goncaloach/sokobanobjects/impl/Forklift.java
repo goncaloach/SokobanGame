@@ -22,14 +22,14 @@ public class Forklift extends MovableObject {
     public void move(Direction direction) {
         Point2D nextPosition = getPosition().plus(direction.asVector());
         setName("Forklift_" + direction.toString().charAt(0));
-        moveObjInFront(nextPosition, direction);
-        moveThis(nextPosition, direction);
-        activateObj(direction);
+        moveObjectInFront(nextPosition, direction);
+        moveThis(nextPosition);
+        activateObject(direction);
     }
 
-    public void moveObjInFront(Point2D pos, Direction d) {
-        SokobanGame soko = SokobanGame.getInstance();
-        List<AbstractSObject> list = soko.getObjectsAt(pos);
+    public void moveObjectInFront(Point2D nextPosition, Direction d) {
+        SokobanGame sokoban = SokobanGame.getInstance();
+        List<AbstractSObject> list = sokoban.getObjectsAt(nextPosition);
         for (AbstractSObject o : list) {
             if (o instanceof MovableObject)
                 ((MovableObject) o).move(d);

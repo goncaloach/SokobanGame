@@ -15,23 +15,24 @@ public abstract class MovableObject extends AbstractSObject {
         this.isStuckable = stuck;
     }
 
-    public void move(Direction d) {
-        Point2D pos = getPosition().plus(d.asVector());
-        moveThis(pos, d);
-        activateObj(d);
+    public void move(Direction direction) {
+        Point2D nextPosition = getPosition().plus(direction.asVector());
+        moveThis(nextPosition);
+        activateObject(direction);
     }
 
-    public void moveThis(Point2D pos, Direction d) {
-        SokobanGame soko = SokobanGame.getInstance();
-        List<AbstractSObject> list = soko.getObjectsAt(pos);
-        if (list.isEmpty() || soko.isTraversable(list, this))
-            setPosition(getPosition().plus(d.asVector()));
+    public void moveThis(Point2D nextPosition) {
+        SokobanGame sokoban = SokobanGame.getInstance();
+        List<AbstractSObject> objectsAtNextPosition = sokoban.getObjectsAt(nextPosition);
+        if (objectsAtNextPosition.isEmpty() || sokoban.isPositionTraversable(objectsAtNextPosition, this)){
+            setPosition(nextPosition);
+        }
     }
 
 
-    public void activateObj(Direction d) {
-        SokobanGame soko = SokobanGame.getInstance();
-        List<AbstractSObject> list = soko.getObjectsAt(getPosition());
+    public void activateObject(Direction d) {
+        SokobanGame sokoban = SokobanGame.getInstance();
+        List<AbstractSObject> list = sokoban.getObjectsAt(getPosition());
         for (AbstractSObject o : list) {
             if (o instanceof ActiveObject)
                 ((ActiveObject) o).action(d, this);

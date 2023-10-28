@@ -15,7 +15,7 @@ public class BrokenWall extends AbstractSObject implements ActiveObject {
 
     @Override
     public void action(Direction d, MovableObject obj) {
-        SokobanGame.getInstance().removeObj_GUI(this);
+        SokobanGame.getInstance().removeObjectFromGUI(this);
     }
 
 }

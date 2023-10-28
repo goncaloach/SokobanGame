@@ -18,7 +18,7 @@ public class Battery extends AbstractSObject implements ActiveObject {
         SokobanGame soko = SokobanGame.getInstance();
         if (obj instanceof Forklift)
             soko.getPlayer().setEnergy(101);
-        soko.removeObj_GUI(this);
+        soko.removeObjectFromGUI(this);
     }
 
 }

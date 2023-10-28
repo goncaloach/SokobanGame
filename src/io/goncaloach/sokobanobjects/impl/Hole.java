@@ -14,17 +14,18 @@ public class Hole extends AbstractSObject implements ActiveObject {
     }
 
     @Override
-    public void action(Direction d, MovableObject obj) {
-        SokobanGame soko = SokobanGame.getInstance();
-        if (obj.equals(soko.getPlayer()))
-            soko.gameOver();
-        if (obj.isStuckable()) {
-            soko.removeObj(obj);
-            soko.addObj(new Wall(getPosition()));
-            soko.removeObj(this);
+    public void action(Direction direction, MovableObject movedObject) {
+        SokobanGame sokoban = SokobanGame.getInstance();
+        if (movedObject.equals(sokoban.getPlayer())){
+            sokoban.gameOver();
             return;
         }
-        soko.removeObj_GUI(obj);
+        if (movedObject.isStuckable()) {
+            sokoban.removeObjectFromList(movedObject);
+            sokoban.removeObjectFromList(this);
+            sokoban.addObjectToList(new Wall(getPosition()));
+        }
+        sokoban.removeObjectFromGUI(movedObject);
     }
 
 

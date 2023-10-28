@@ -16,20 +16,19 @@ public class Teleport extends AbstractSObject implements ActiveObject {
     }
 
     @Override
-    public void action(Direction d, MovableObject obj) {
-        SokobanGame soko = SokobanGame.getInstance();
-        Point2D point = null;
-        for (AbstractSObject i : soko.getAllObjects()) {
-            if (i instanceof Teleport)
-                if (!i.getPosition().equals(this.getPosition()))
-                    point = i.getPosition();
+    public void action(Direction direction, MovableObject movedObject) {
+        SokobanGame sokoban = SokobanGame.getInstance();
+        Point2D positionToTeleport = null;
+        for (AbstractSObject teleport : sokoban.getAllTeleports()) {
+            if (!teleport.getPosition().equals(this.getPosition()))
+                positionToTeleport = teleport.getPosition();
         }
-        List<AbstractSObject> list = soko.getObjectsAt(point);
+        List<AbstractSObject> list = sokoban.getObjectsAt(positionToTeleport);
         for (AbstractSObject i : list) {
             if (i instanceof MovableObject)
                 return;
         }
-        obj.setPosition(point);
+        movedObject.setPosition(positionToTeleport);
     }
 
 }

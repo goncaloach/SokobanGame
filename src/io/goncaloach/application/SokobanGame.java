@@ -20,19 +20,22 @@ import pt.iul.ista.poo.utils.Point2D;
 
 public class SokobanGame implements Observer {
 
+    private static SokobanGame INSTANCE = null;
+
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
-    public static final int MAX_LEVEL = 3;
+    private static final int MAX_LEVEL = 3;
+    private static final int INITIAL_ENERGY = 100;
+
     private Forklift player;
     private final List<AbstractSObject> sokobanObjects = new ArrayList<>();
     private final List<Target> targets = new ArrayList<>();
     private int level = 1;
-
-    private static SokobanGame INSTANCE = null;
+    private boolean isGameOver = false;
 
     private SokobanGame() {
         readMap(level);
-        objsToGUI();
+        addObjectsToGUI();
         setStatusMessage();
     }
 
@@ -70,81 +73,100 @@ public class SokobanGame implements Observer {
     private void initializeVariablesFromObjects(AbstractSObject sokobanObject) {
         if (sokobanObject instanceof Target) {
             targets.add((Target) sokobanObject);
-        }
-        if (sokobanObject instanceof Forklift) {
+        } else if (sokobanObject instanceof Forklift) {
             player = (Forklift) sokobanObject;
         }
         sokobanObjects.add(sokobanObject);
     }
 
     public List<AbstractSObject> getObjectsAt(Point2D position) {
-        List<AbstractSObject> list = new ArrayList<>();
-        for (AbstractSObject i : sokobanObjects)
-            if (i.getPosition().equals(position))
-                list.add(i);
-        return list;
+
+        return sokobanObjects.stream()
+                .filter(object -> object.getPosition().equals(position))
+                .toList();
     }
 
 
-    public boolean isTraversable(List<AbstractSObject> list, AbstractSObject obj) {
-        for (AbstractSObject i : list)
-            if (!i.isTraversable()) {
-                if (i instanceof ActiveObject) {
-                    return obj instanceof Forklift && ((Forklift) obj).hasHammer();
+    public boolean isPositionTraversable(List<AbstractSObject> objectsAtPosition, AbstractSObject objectToMove) {
+        for (AbstractSObject object : objectsAtPosition) {
+            if (!object.isTraversable()) {
+                if (object instanceof ActiveObject) {
+                    return objectToMove instanceof Forklift && ((Forklift) objectToMove).hasHammer();
                 }
                 return false;
             }
+        }
         return true;
     }
-
 
     @Override
     public void update(Observed arg0) {
         int lastKeyPressed = ((ImageMatrixGUI) arg0).keyPressed();
 
-        if (lastKeyPressed == KeyEvent.VK_R)
+        if (lastKeyPressed == KeyEvent.VK_R) {
             restartLevel();
+            refreshScreen();
+            return;
+        }
 
-        if (lastKeyPressed == KeyEvent.VK_ESCAPE)
-            ImageMatrixGUI.getInstance().dispose();
+        if (lastKeyPressed == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
 
-        if (Direction.isDirection(lastKeyPressed))
+        if (isGameOver) {
+            return;
+        }
+
+        if (Direction.isDirection(lastKeyPressed)) {
             player.move(Direction.directionFor(lastKeyPressed));
+            player.decEnergy();
+            player.incMoves();
+            refreshScreen();
+            setStatusMessage();
+        }
 
         if (player.getEnergy() == 0) {
             gameOver();
-            return;
+            refreshScreen();
         }
-        player.decEnergy();
-        player.incMoves();
+
+    }
+
+    private static void refreshScreen() {
         ImageMatrixGUI.getInstance().update();
-        setStatusMessage();
+    }
+
+    private static void clearScreen() {
+        ImageMatrixGUI.getInstance().clearImages();
     }
 
     public void gameOver() {
-        ImageMatrixGUI.getInstance().clearImages();
+        isGameOver = true;
+        clearScreen();
         sokobanObjects.clear();
         readMap("gameover");
-        objsToGUI();
-        player.setEnergy(1);
-        ImageMatrixGUI.getInstance().setStatusMessage("GAME OVER - Press 'R' to restart "
-                + "- Press 'ESC' to quit");
+        addObjectsToGUI();
+        displayGameOverMessage();
     }
 
     public void restartLevel() {
-        ImageMatrixGUI.getInstance().clearImages();
-        sokobanObjects.clear();
-        targets.clear();
+        clearScreen();
+        resetVariables();
         readMap(level);
-        player.setEnergy(101);
-        player.setMoves(-1);
-        objsToGUI();
+        addObjectsToGUI();
+        isGameOver = false;
         setStatusMessage();
     }
 
-    public void objsToGUI() {
-        for (AbstractSObject o : sokobanObjects)
-            ImageMatrixGUI.getInstance().addImage(o);
+    private void resetVariables() {
+        sokobanObjects.clear();
+        targets.clear();
+        player.setEnergy(INITIAL_ENERGY);
+        player.setMoves(0);
+    }
+
+    public void addObjectsToGUI() {
+        sokobanObjects.forEach(object -> ImageMatrixGUI.getInstance().addImage(object));
     }
 
     public void setStatusMessage() {
@@ -153,15 +175,19 @@ public class SokobanGame implements Observer {
                 "           Press 'R' to restart");
     }
 
-    public void removeObj(AbstractSObject obj) {
-        sokobanObjects.remove(obj);
+    private static void displayGameOverMessage() {
+        ImageMatrixGUI.getInstance().setStatusMessage("GAME OVER - Press 'R' to restart - Press 'ESC' to quit");
     }
 
-    public void addObj(AbstractSObject obj) {
+    public void removeObjectFromList(AbstractSObject object) {
+        sokobanObjects.remove(object);
+    }
+
+    public void addObjectToList(AbstractSObject obj) {
         sokobanObjects.add(obj);
     }
 
-    public void removeObj_GUI(AbstractSObject obj) {
+    public void removeObjectFromGUI(AbstractSObject obj) {
         sokobanObjects.remove(obj);
         ImageMatrixGUI.getInstance().removeImage(obj);
     }
@@ -199,13 +225,14 @@ public class SokobanGame implements Observer {
     }
 
     private boolean containsBox(Target target) {
-        return sokobanObjects.stream() //TODO get objectsAt?
-                .filter(object -> object.getPosition().equals(target.getPosition()))
+        return getObjectsAt(target.getPosition()).stream()
                 .anyMatch(object -> object instanceof Box);
     }
 
-    public List<AbstractSObject> getAllObjects() {
-        return new ArrayList<>(sokobanObjects);
+    public List<AbstractSObject> getAllTeleports() {
+        return sokobanObjects.stream()
+                .filter(object -> object instanceof Teleport)
+                .toList();
     }
 
 }
