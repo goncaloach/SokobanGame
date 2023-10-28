@@ -10,8 +10,10 @@ import pt.iul.ista.poo.utils.Point2D;
 
 public class Forklift extends MovableObject {
 
+    public static int DEFAULT_ENERGY = 100;
+
     private boolean hasHammer = false;
-    private int energy = 100;
+    private int energy = DEFAULT_ENERGY;
     private int moves = 0;
 
     public Forklift(Point2D position) {
@@ -21,35 +23,34 @@ public class Forklift extends MovableObject {
     @Override
     public void move(Direction direction) {
         Point2D nextPosition = getPosition().plus(direction.asVector());
-        setName("Forklift_" + direction.toString().charAt(0));
+        super.setName("Forklift_" + direction.toString().charAt(0));
         moveObjectInFront(nextPosition, direction);
-        moveThis(nextPosition);
-        activateObject(direction);
+        super.moveItself(nextPosition);
+        super.activateObject(direction);
     }
 
-    public void moveObjectInFront(Point2D nextPosition, Direction d) {
+    public void moveObjectInFront(Point2D nextPosition, Direction direction) {
         SokobanGame sokoban = SokobanGame.getInstance();
-        List<AbstractSObject> list = sokoban.getObjectsAt(nextPosition);
-        for (AbstractSObject o : list) {
-            if (o instanceof MovableObject)
-                ((MovableObject) o).move(d);
-        }
+        sokoban.getObjectsAt(nextPosition).stream()
+                .filter(object -> object instanceof MovableObject)
+                .map(object -> (MovableObject) object)
+                .forEach(movableObject -> movableObject.move(direction));
     }
 
     public boolean hasHammer() {
         return hasHammer;
     }
 
-    public void setHasHammer(boolean b) {
-        hasHammer = b;
-    }
-
     public int getEnergy() {
         return energy;
     }
 
-    public void setEnergy(int energy) {
-        this.energy = energy;
+    public int getMoves() {
+        return moves;
+    }
+
+    public void addHammer() {
+        hasHammer = true;
     }
 
     public void decEnergy() {
@@ -60,13 +61,12 @@ public class Forklift extends MovableObject {
         moves++;
     }
 
-    public int getMoves() {
-        return moves;
+    public void resetMoves() {
+        moves = 0;
     }
 
-    public void setMoves(int m) {
-        moves = m;
+    public void resetEnergy() {
+        this.energy = DEFAULT_ENERGY;
     }
-
 
 }

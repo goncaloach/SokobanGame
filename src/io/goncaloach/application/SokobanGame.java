@@ -1,5 +1,13 @@
 package io.goncaloach.application;
 
+import io.goncaloach.sokobanobjects.AbstractSObject;
+import io.goncaloach.sokobanobjects.ActivatableObject;
+import io.goncaloach.sokobanobjects.impl.*;
+import pt.iul.ista.poo.gui.ImageMatrixGUI;
+import pt.iul.ista.poo.observer.Observed;
+import pt.iul.ista.poo.observer.Observer;
+import pt.iul.ista.poo.utils.Direction;
+import pt.iul.ista.poo.utils.Point2D;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,15 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
-import io.goncaloach.sokobanobjects.AbstractSObject;
-import io.goncaloach.sokobanobjects.ActiveObject;
-import io.goncaloach.sokobanobjects.impl.*;
-import pt.iul.ista.poo.gui.ImageMatrixGUI;
-import pt.iul.ista.poo.observer.Observed;
-import pt.iul.ista.poo.observer.Observer;
-import pt.iul.ista.poo.utils.Direction;
-import pt.iul.ista.poo.utils.Point2D;
 
 
 public class SokobanGame implements Observer {
@@ -25,7 +24,6 @@ public class SokobanGame implements Observer {
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
     private static final int MAX_LEVEL = 3;
-    private static final int INITIAL_ENERGY = 100;
 
     private Forklift player;
     private final List<AbstractSObject> sokobanObjects = new ArrayList<>();
@@ -90,7 +88,7 @@ public class SokobanGame implements Observer {
     public boolean isPositionTraversable(List<AbstractSObject> objectsAtPosition, AbstractSObject objectToMove) {
         for (AbstractSObject object : objectsAtPosition) {
             if (!object.isTraversable()) {
-                if (object instanceof ActiveObject) {
+                if (object instanceof ActivatableObject) {
                     return objectToMove instanceof Forklift && ((Forklift) objectToMove).hasHammer();
                 }
                 return false;
@@ -161,8 +159,8 @@ public class SokobanGame implements Observer {
     private void resetVariables() {
         sokobanObjects.clear();
         targets.clear();
-        player.setEnergy(INITIAL_ENERGY);
-        player.setMoves(0);
+        player.resetEnergy();
+        player.resetMoves();
     }
 
     public void addObjectsToGUI() {

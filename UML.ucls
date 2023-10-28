@@ -145,7 +145,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <interface id="17" language="java" name="io.goncaloach.sokobanobjects.ActiveObject" project="Sokoban_93205_Gonçalo_Henriques"
+  <interface id="17" language="java" name="io.goncaloach.sokobanobjects.ActivatableObject" project="Sokoban_93205_Gonçalo_Henriques"
     file="/Sokoban_93205_Gonçalo_Henriques/src/Main/ActiveObject.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="202" x="1511" y="1251"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
