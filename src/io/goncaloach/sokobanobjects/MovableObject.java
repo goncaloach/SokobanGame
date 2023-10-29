@@ -9,9 +9,9 @@ public abstract class MovableObject extends AbstractSObject {
 
     private final boolean isStuckable;
 
-    public MovableObject(Point2D position, String name, int layer, boolean isTraversable, boolean stuck) {
+    public MovableObject(Point2D position, String name, int layer, boolean isTraversable, boolean isStuckable) {
         super(position, name, layer, isTraversable);
-        this.isStuckable = stuck;
+        this.isStuckable = isStuckable;
     }
 
     public void move(Direction direction) {

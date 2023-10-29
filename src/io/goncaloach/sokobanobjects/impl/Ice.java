@@ -13,22 +13,22 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Ice extends AbstractSObject implements ActivatableObject {
 
     public Ice(Point2D point2d) {
-        super(point2d, "Ice", 1, true);
+        super(point2d, "Ice", STATIC_LAYER, true);
     }
 
     @Override
-    public void action(Direction direction, MovableObject obj) {
+    public void action(Direction direction, MovableObject movedObject) {
         SokobanGame sokoban = SokobanGame.getInstance();
         List<AbstractSObject> objectsAtNextPosition =
                 sokoban.getObjectsAt(getPosition().plus(direction.asVector()));
-        if (sokoban.isPositionTraversable(objectsAtNextPosition, obj)) {
+        if (sokoban.isPositionTraversable(objectsAtNextPosition, movedObject)) {
             ImageMatrixGUI.getInstance().update();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            obj.move(direction);
+            movedObject.move(direction);
         }
     }
 

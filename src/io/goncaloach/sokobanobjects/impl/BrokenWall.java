@@ -10,7 +10,7 @@ import pt.iul.ista.poo.utils.Point2D;
 public class BrokenWall extends AbstractSObject implements ActivatableObject {
 
     public BrokenWall(Point2D point2d) {
-        super(point2d, "Broken_Wall", 1, false);
+        super(point2d, "Broken_Wall", STATIC_LAYER, false);
     }
 
     @Override

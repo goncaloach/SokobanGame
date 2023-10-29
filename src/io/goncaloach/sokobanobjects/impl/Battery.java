@@ -10,7 +10,7 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Battery extends AbstractSObject implements ActivatableObject {
 
     public Battery(Point2D pos) {
-        super(pos, "Battery", 1, true);
+        super(pos, "Battery", STATIC_LAYER, true);
     }
 
     @Override

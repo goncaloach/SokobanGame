@@ -12,7 +12,7 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Teleport extends AbstractSObject implements ActivatableObject {
 
     public Teleport(Point2D point2d) {
-        super(point2d, "Green_Portal", 1, true);
+        super(point2d, "Green_Portal", STATIC_LAYER, true);
     }
 
     @Override
@@ -20,13 +20,14 @@ public class Teleport extends AbstractSObject implements ActivatableObject {
         SokobanGame sokoban = SokobanGame.getInstance();
         Point2D positionToTeleport = null;
         for (AbstractSObject teleport : sokoban.getAllTeleports()) {
-            if (!teleport.getPosition().equals(this.getPosition()))
+            if (!teleport.getPosition().equals(this.getPosition())) {
                 positionToTeleport = teleport.getPosition();
+            }
         }
-        List<AbstractSObject> list = sokoban.getObjectsAt(positionToTeleport);
-        for (AbstractSObject i : list) {
-            if (i instanceof MovableObject)
+        for (AbstractSObject object : sokoban.getObjectsAt(positionToTeleport)) {
+            if (object instanceof MovableObject){
                 return;
+            }
         }
         movedObject.setPosition(positionToTeleport);
     }

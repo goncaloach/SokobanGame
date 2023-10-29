@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public abstract class AbstractSObject implements ImageTile {
 
+    protected static final int BACKGROUND_LAYER = 0;
+    protected static final int STATIC_LAYER = 1;
+    protected static final int MOVABLE_LAYER = 2;
     private Point2D position;
     private String name;
     private final int layer;

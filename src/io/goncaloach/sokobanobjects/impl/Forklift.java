@@ -17,7 +17,7 @@ public class Forklift extends MovableObject {
     private int moves = 0;
 
     public Forklift(Point2D position) {
-        super(position, "Forklift_U", 2, false, false);
+        super(position, "Forklift_U", MOVABLE_LAYER, false, false);
     }
 
     @Override

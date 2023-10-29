@@ -10,7 +10,7 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Target extends AbstractSObject implements ActivatableObject {
 
     public Target(Point2D point2d) {
-        super(point2d, "Target", 1, true);
+        super(point2d, "Target", STATIC_LAYER, true);
     }
 
     @Override

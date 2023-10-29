@@ -10,16 +10,17 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Hammer extends AbstractSObject implements ActivatableObject {
 
     public Hammer(Point2D point2d) {
-        super(point2d, "Hammer", 2, true);
+        super(point2d, "Hammer", STATIC_LAYER, true);
 
     }
 
     @Override
-    public void action(Direction d, MovableObject obj) {
-        SokobanGame soko = SokobanGame.getInstance();
-        if (obj instanceof Forklift)
-            soko.getPlayer().addHammer();
-        soko.removeObjectFromGUI(this);
+    public void action(Direction direction, MovableObject movedObject) {
+        SokobanGame sokoban = SokobanGame.getInstance();
+        if (movedObject instanceof Forklift){
+            sokoban.getPlayer().addHammer();
+        }
+        sokoban.removeObjectFromGUI(this);
     }
 
 }
