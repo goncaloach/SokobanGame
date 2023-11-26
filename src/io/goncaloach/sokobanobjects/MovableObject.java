@@ -16,11 +16,13 @@ public abstract class MovableObject extends AbstractSObject {
 
     public void move(Direction direction) {
         Point2D nextPosition = getPosition().plus(direction.asVector());
+        System.out.println("DEBUG: default move");
         moveItself(nextPosition);
         activateObject(direction);
     }
 
     public void moveItself(Point2D nextPosition) {
+        System.out.println("DEBUG: move itself " + getName());
         if (isPositionOutOfBounds(nextPosition)) {
             return;
         }
@@ -39,6 +41,7 @@ public abstract class MovableObject extends AbstractSObject {
     }
 
     public void activateObject(Direction direction) {
+        System.out.println("DEBUG: activate object " + getName());
         SokobanGame sokoban = SokobanGame.getInstance();
         sokoban.getObjectsAt(getPosition()).stream()
                 .filter(object -> object instanceof ActivatableObject)

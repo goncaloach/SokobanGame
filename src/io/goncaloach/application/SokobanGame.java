@@ -113,9 +113,11 @@ public class SokobanGame implements Observer {
         }
 
         if (Direction.isDirection(lastKeyPressed)) {
+            System.out.println("DEBUG: update move");
             player.updateStatsOnMove();
             player.move(Direction.directionFor(lastKeyPressed));
             refreshScreen();
+            System.out.println("\n");
         }
 
         if (player.getEnergy() == 0) {
@@ -143,6 +145,7 @@ public class SokobanGame implements Observer {
     }
 
     public void restartLevel() {
+        System.out.println("DEBUG: restartLevel");
         clearScreen();
         resetVariables();
         readMap(level);

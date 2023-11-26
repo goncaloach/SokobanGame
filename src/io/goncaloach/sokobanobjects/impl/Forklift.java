@@ -27,11 +27,12 @@ public class Forklift extends MovableObject {
     }
 
     private void moveObjectInFront(Point2D nextPosition, Direction direction) {
+        System.out.println("DEBUG: move object in front");
         SokobanGame sokoban = SokobanGame.getInstance();
         sokoban.getObjectsAt(nextPosition).stream()
                 .filter(object -> object instanceof MovableObject)
-                .map(object -> (MovableObject) object)
-                .forEach(movableObject -> movableObject.move(direction));
+                .findFirst()
+                .ifPresent(object -> ((MovableObject) object).move(direction));
     }
 
     public void updateStatsOnMove() {

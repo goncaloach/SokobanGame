@@ -1,7 +1,5 @@
 package io.goncaloach.sokobanobjects.impl;
 
-import java.util.List;
-
 import io.goncaloach.application.SokobanGame;
 import io.goncaloach.sokobanobjects.AbstractSObject;
 import io.goncaloach.sokobanobjects.ActivatableObject;

@@ -1,10 +1,10 @@
-OOOOOOOOOO
-O#b      %
-O#XXPX  g%
-O#%#    g%
-O#C  ###g%
-O#  C %mg%
-O# Cp OOg%
-O#E   OOg%
-O###    g%
-OOOOOOOOOO
+#OO#OO#OO#
+Ob      %O
+OXXPX  g%O
+#%#    g%#
+OC  ###g%O
+O  C %mg%O
+# Cp OOg%#
+OE   OOg%O
+O##    g%O
+#OO#OO#OO#
