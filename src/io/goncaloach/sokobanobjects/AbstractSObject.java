@@ -11,10 +11,11 @@ public abstract class AbstractSObject implements ImageTile {
     protected static final int BACKGROUND_LAYER = 0;
     protected static final int STATIC_LAYER = 1;
     protected static final int MOVABLE_LAYER = 2;
-    private Point2D position;
-    private String name;
+
     private final int layer;
     private final boolean isTraversable;
+    private Point2D position;
+    private String name;
 
 
     public AbstractSObject(Point2D position, String name, int layer, boolean isTraversable) {

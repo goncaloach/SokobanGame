@@ -17,7 +17,7 @@ public class Battery extends AbstractSObject implements ActivatableObject {
     public void action(Direction d, MovableObject obj) {
         SokobanGame soko = SokobanGame.getInstance();
         if (obj instanceof Forklift)
-            soko.getPlayer().resetEnergy(); //todo fix bug
+            soko.getPlayer().refillEnergy();
         soko.removeObjectFromGUI(this);
     }
 

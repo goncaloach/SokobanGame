@@ -4,6 +4,7 @@ import io.goncaloach.application.SokobanGame;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class MovableObject extends AbstractSObject {
 
@@ -28,12 +29,12 @@ public abstract class MovableObject extends AbstractSObject {
         }
     }
 
-    public void activateObject(Direction d) {
+    public void activateObject(Direction direction) {
         SokobanGame sokoban = SokobanGame.getInstance();
         sokoban.getObjectsAt(getPosition()).stream()
                 .filter(object -> object instanceof ActivatableObject)
-                .map(object -> (ActivatableObject) object)
-                .forEach(activeObject -> activeObject.action(d, this));
+                .findFirst()
+                .ifPresent(object -> ((ActivatableObject) object).action(direction, this));
     }
 
     public boolean isStuckable() {

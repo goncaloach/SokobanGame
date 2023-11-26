@@ -15,7 +15,9 @@ public class BrokenWall extends AbstractSObject implements ActivatableObject {
 
     @Override
     public void action(Direction d, MovableObject obj) {
-        SokobanGame.getInstance().removeObjectFromGUI(this);
+        SokobanGame sokoban = SokobanGame.getInstance();
+        sokoban.removeObjectFromGUI(this);
+        sokoban.removeObjectFromList(this);
     }
 
 }

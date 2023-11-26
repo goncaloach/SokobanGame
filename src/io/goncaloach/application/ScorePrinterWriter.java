@@ -27,11 +27,12 @@ public class ScorePrinterWriter {
         List<Score> storedScores = new ArrayList<>();
         SokobanGame sokoban = SokobanGame.getInstance();
         int newScore = sokoban.getPlayer().getMoves();
+        String playerName = sokoban.getPlayerName();
         try (Scanner scanner = new Scanner(new File(getScorePathFile(sokoban.getLevel())))) {
             while (scanner.hasNextLine()) {
                 storedScores.add(buildScoreFromLine(scanner));
             }
-            addNewScoreConditionally(storedScores, newScore);
+            addNewScoreConditionally(storedScores, newScore, playerName);
             storedScores.sort(Comparator.comparingInt(Score::getScore));
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -43,11 +44,11 @@ public class ScorePrinterWriter {
         return "scores//score_" + level + ".txt";
     }
 
-    private static void addNewScoreConditionally(List<Score> playersScores, int newScore) {
+    private static void addNewScoreConditionally(List<Score> playersScores, int newScore, String playerName) {
         if (!areScoresFull(playersScores)) {
-            playersScores.add(new Score(readPlayerName(), newScore));
+            playersScores.add(new Score(playerName, newScore));
         } else if (isNewScoreBetterThanOneStored(playersScores, newScore)) {
-            playersScores.set(SCORES_SIZE - 1, new Score(readPlayerName(), newScore));
+            playersScores.set(SCORES_SIZE - 1, new Score(playerName, newScore));
         }
     }
 
@@ -65,12 +66,6 @@ public class ScorePrinterWriter {
         int playerScore = Integer.parseInt(info[1].substring(6));
         LocalDate playerDate = LocalDate.parse(info[2].substring(5));
         return new Score(playerName, playerScore, playerDate);
-    }
-
-    private static String readPlayerName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Nickname:");
-        return scanner.nextLine();
     }
 
 }

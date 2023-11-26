@@ -25,16 +25,17 @@ public class SokobanGame implements Observer {
     public static final int MAP_HEIGHT = 10;
     private static final int MAX_LEVEL = 3;
 
+    private final String playerName;
+    private final List<AbstractSObject> sokobanObjects;
     private Forklift player;
-    private final List<AbstractSObject> sokobanObjects = new ArrayList<>();
-    private final List<Target> targets = new ArrayList<>();
-    private int level = 1;
-    private boolean isGameOver = false;
+    private int level;
+    private boolean isGameOver;
 
     private SokobanGame() {
-        readMap(level);
-        addObjectsToGUI();
-        setStatusMessage();
+        sokobanObjects = new ArrayList<>();
+        level = 1;
+        playerName = "readPlayerName();";
+        restartLevel();
     }
 
     public static SokobanGame getInstance() {
@@ -69,9 +70,7 @@ public class SokobanGame implements Observer {
     }
 
     private void initializeVariablesFromObjects(AbstractSObject sokobanObject) {
-        if (sokobanObject instanceof Target) {
-            targets.add((Target) sokobanObject);
-        } else if (sokobanObject instanceof Forklift) {
+        if (sokobanObject instanceof Forklift) {
             player = (Forklift) sokobanObject;
         }
         sokobanObjects.add(sokobanObject);
@@ -103,7 +102,6 @@ public class SokobanGame implements Observer {
 
         if (lastKeyPressed == KeyEvent.VK_R) {
             restartLevel();
-            refreshScreen();
             return;
         }
 
@@ -116,21 +114,18 @@ public class SokobanGame implements Observer {
         }
 
         if (Direction.isDirection(lastKeyPressed)) {
+            player.updateStatsOnMove();
             player.move(Direction.directionFor(lastKeyPressed));
-            player.decEnergy();
-            player.incMoves();
             refreshScreen();
-            setStatusMessage();
         }
 
         if (player.getEnergy() == 0) {
             gameOver();
-            refreshScreen();
         }
-
     }
 
-    private static void refreshScreen() {
+    private void refreshScreen() {
+        displayStatusMessage();
         ImageMatrixGUI.getInstance().update();
     }
 
@@ -142,9 +137,10 @@ public class SokobanGame implements Observer {
         isGameOver = true;
         clearScreen();
         sokobanObjects.clear();
+        resetVariables();
         readMap("gameover");
         addObjectsToGUI();
-        displayGameOverMessage();
+        refreshScreen();
     }
 
     public void restartLevel() {
@@ -153,28 +149,23 @@ public class SokobanGame implements Observer {
         readMap(level);
         addObjectsToGUI();
         isGameOver = false;
-        setStatusMessage();
+        refreshScreen();
     }
 
     private void resetVariables() {
         sokobanObjects.clear();
-        targets.clear();
-        player.resetEnergy();
-        player.resetMoves();
     }
 
     public void addObjectsToGUI() {
         sokobanObjects.forEach(object -> ImageMatrixGUI.getInstance().addImage(object));
     }
 
-    public void setStatusMessage() {
-        ImageMatrixGUI.getInstance().setStatusMessage("Energy:" + player.getEnergy() +
-                "   Moves:" + player.getMoves() + "   Level:" + level +
-                "           Press 'R' to restart");
-    }
+    public void displayStatusMessage() { //TODO refactor
 
-    private static void displayGameOverMessage() {
-        ImageMatrixGUI.getInstance().setStatusMessage("GAME OVER - Press 'R' to restart - Press 'ESC' to quit");
+        String displayMessage = isGameOver ? "GAME OVER - Press 'R' to restart - Press 'ESC' to quit"
+                : "Energy:" + player.getEnergy() + "   Moves:" + player.getMoves() + "   Level:" + level + "           Press 'R' to restart";
+
+        ImageMatrixGUI.getInstance().setStatusMessage(displayMessage);
     }
 
     public void removeObjectFromList(AbstractSObject object) {
@@ -186,7 +177,6 @@ public class SokobanGame implements Observer {
     }
 
     public void removeObjectFromGUI(AbstractSObject obj) {
-        sokobanObjects.remove(obj);
         ImageMatrixGUI.getInstance().removeImage(obj);
     }
 
@@ -200,10 +190,10 @@ public class SokobanGame implements Observer {
 
     public void checkIfLevelIsCompleted() {
 
-        boolean isLevelCompleted = targets.stream().allMatch(this::containsBox);
-        if (!isLevelCompleted) {
+        if (!allTargetsContainBoxes()) {
             return;
         }
+        System.out.println("INFO: Level completed");
         ScorePrinterWriter.writeScore();
         if (level == MAX_LEVEL) {
             endGame();
@@ -211,8 +201,20 @@ public class SokobanGame implements Observer {
         startNextLevel();
     }
 
+    private boolean allTargetsContainBoxes() {
+
+        return sokobanObjects.stream()
+                .filter(object -> object instanceof Target)
+                .map(object -> (Target) object)
+                .allMatch(this::containsBox);
+    }
+
+    private boolean containsBox(Target target) {
+        return getObjectsAt(target.getPosition()).stream()
+                .anyMatch(object -> object instanceof Box);
+    }
+
     private void startNextLevel() {
-        System.out.println("INFO: Next Level");
         level++;
         restartLevel(); //TODO check this
     }
@@ -222,15 +224,23 @@ public class SokobanGame implements Observer {
         System.exit(0);
     }
 
-    private boolean containsBox(Target target) {
-        return getObjectsAt(target.getPosition()).stream()
-                .anyMatch(object -> object instanceof Box);
-    }
-
     public List<AbstractSObject> getAllTeleports() {
         return sokobanObjects.stream()
                 .filter(object -> object instanceof Teleport)
                 .toList();
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    private static String readPlayerName() { //TODO activate after dev
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("INFO: Before you start, please type your username:");
+            String userName = scanner.nextLine();
+            System.out.println("INFO: Welcome " + userName + "! Have fun!");
+            return userName;
+        }
     }
 
 }
