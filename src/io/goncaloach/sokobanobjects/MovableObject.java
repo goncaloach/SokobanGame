@@ -23,10 +23,10 @@ public abstract class MovableObject extends AbstractSObject {
 
     public void moveItself(Point2D nextPosition) {
         System.out.println("DEBUG: move itself " + getName());
+        SokobanGame sokoban = SokobanGame.getInstance();
         if (isPositionOutOfBounds(nextPosition)) {
             return;
         }
-        SokobanGame sokoban = SokobanGame.getInstance();
         List<AbstractSObject> objectsAtNextPosition = sokoban.getObjectsAt(nextPosition);
         if (sokoban.isPositionTraversable(objectsAtNextPosition, this)) {
             setPosition(nextPosition);

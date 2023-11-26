@@ -236,6 +236,10 @@ public class SokobanGame implements Observer {
         return playerName;
     }
 
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
     private static String readPlayerName() { //TODO activate after dev
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("INFO: Before you start, please type your username:");

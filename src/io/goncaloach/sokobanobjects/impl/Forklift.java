@@ -22,6 +22,9 @@ public class Forklift extends MovableObject {
         Point2D nextPosition = getPosition().plus(direction.asVector());
         super.setName("Forklift_" + direction.toString().charAt(0));
         moveObjectInFront(nextPosition, direction);
+        if (SokobanGame.getInstance().isGameOver()) { //TODO
+            return;
+        }
         super.moveItself(nextPosition);
         super.activateObject(direction);
     }
