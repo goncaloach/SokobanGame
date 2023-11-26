@@ -21,13 +21,13 @@ public class Hole extends AbstractSObject implements ActivatableObject {
             return;
         }
         if (movedObject.isStuckable()) {
-            sokoban.removeObjectFromList(movedObject);
             sokoban.removeObjectFromList(this);
             sokoban.removeObjectFromGUI(this);
             sokoban.addObjectToList(new Wall(getPosition()));
         } else {
             sokoban.removeObjectFromGUI(movedObject);
         }
+        sokoban.removeObjectFromList(movedObject);
     }
 
 

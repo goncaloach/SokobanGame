@@ -83,7 +83,6 @@ public class SokobanGame implements Observer {
                 .toList();
     }
 
-
     public boolean isPositionTraversable(List<AbstractSObject> objectsAtPosition, AbstractSObject objectToMove) {
         for (AbstractSObject object : objectsAtPosition) {
             if (!object.isTraversable()) {

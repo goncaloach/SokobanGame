@@ -4,7 +4,6 @@ import io.goncaloach.application.SokobanGame;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class MovableObject extends AbstractSObject {
 
@@ -22,11 +21,21 @@ public abstract class MovableObject extends AbstractSObject {
     }
 
     public void moveItself(Point2D nextPosition) {
+        if (isPositionOutOfBounds(nextPosition)) {
+            return;
+        }
         SokobanGame sokoban = SokobanGame.getInstance();
         List<AbstractSObject> objectsAtNextPosition = sokoban.getObjectsAt(nextPosition);
         if (sokoban.isPositionTraversable(objectsAtNextPosition, this)) {
             setPosition(nextPosition);
         }
+    }
+
+    private boolean isPositionOutOfBounds(Point2D nextPosition) {
+        int width = nextPosition.getX();
+        int height = nextPosition.getY();
+        return width > SokobanGame.MAP_WIDTH - 1 || width < 0
+                || height > SokobanGame.MAP_HEIGHT - 1 || height < 0;
     }
 
     public void activateObject(Direction direction) {
