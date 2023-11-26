@@ -1,5 +1,0 @@
-Player:blin - Score:139
-Player:stugoas - Score:140
-Player:Guguinhas - Score:144
-Player:ResidentSleeper - Score:161
-Player:ez - Score:165
