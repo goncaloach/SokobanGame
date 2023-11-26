@@ -34,7 +34,7 @@ public class SokobanGame implements Observer {
     private SokobanGame() {
         sokobanObjects = new ArrayList<>();
         level = 1;
-        playerName = "readPlayerName();";
+        playerName = readPlayerName();
         restartLevel();
     }
 
@@ -113,11 +113,9 @@ public class SokobanGame implements Observer {
         }
 
         if (Direction.isDirection(lastKeyPressed)) {
-            System.out.println("DEBUG: update move");
             player.updateStatsOnMove();
             player.move(Direction.directionFor(lastKeyPressed));
             refreshScreen();
-            System.out.println("\n");
         }
 
         if (player.getEnergy() == 0) {
@@ -145,7 +143,6 @@ public class SokobanGame implements Observer {
     }
 
     public void restartLevel() {
-        System.out.println("DEBUG: restartLevel");
         clearScreen();
         resetVariables();
         readMap(level);
@@ -162,10 +159,11 @@ public class SokobanGame implements Observer {
         sokobanObjects.forEach(object -> ImageMatrixGUI.getInstance().addImage(object));
     }
 
-    public void displayStatusMessage() { //TODO refactor
+    public void displayStatusMessage() {
 
         String displayMessage = isGameOver ? "GAME OVER - Press 'R' to restart - Press 'ESC' to quit"
-                : "Energy:" + player.getEnergy() + "   Moves:" + player.getMoves() + "   Level:" + level + "           Press 'R' to restart";
+                : "Energy:" + player.getEnergy() + "   Moves:" + player.getMoves() + "   Level:" + level
+                + "           Press 'R' to restart";
 
         ImageMatrixGUI.getInstance().setStatusMessage(displayMessage);
     }
@@ -218,7 +216,7 @@ public class SokobanGame implements Observer {
 
     private void startNextLevel() {
         level++;
-        restartLevel(); //TODO check this
+        restartLevel();
     }
 
     private void endGame() {
@@ -240,7 +238,7 @@ public class SokobanGame implements Observer {
         return isGameOver;
     }
 
-    private static String readPlayerName() { //TODO activate after dev
+    private static String readPlayerName() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("INFO: Before you start, please type your username:");
             String userName = scanner.nextLine();

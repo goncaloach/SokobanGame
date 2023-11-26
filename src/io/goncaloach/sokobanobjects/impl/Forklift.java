@@ -19,10 +19,13 @@ public class Forklift extends MovableObject {
 
     @Override
     public void move(Direction direction) {
+        SokobanGame sokobanGame = SokobanGame.getInstance();
         Point2D nextPosition = getPosition().plus(direction.asVector());
         super.setName("Forklift_" + direction.toString().charAt(0));
+        int currentLevel = sokobanGame.getLevel();
         moveObjectInFront(nextPosition, direction);
-        if (SokobanGame.getInstance().isGameOver()) { //TODO
+        int levelAfterAction = sokobanGame.getLevel();
+        if (currentLevel != levelAfterAction) { // this is a way to check if the level was completed
             return;
         }
         super.moveItself(nextPosition);
@@ -30,7 +33,6 @@ public class Forklift extends MovableObject {
     }
 
     private void moveObjectInFront(Point2D nextPosition, Direction direction) {
-        System.out.println("DEBUG: move object in front");
         SokobanGame sokoban = SokobanGame.getInstance();
         sokoban.getObjectsAt(nextPosition).stream()
                 .filter(object -> object instanceof MovableObject)
